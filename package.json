@@ -1,0 +1,19 @@
+{
+  "name": "asp",
+  "version": "1.0.0",
+  "description": "Audio Signal Processing with node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Nick Turunov",
+  "license": "ISC",
+  "dependencies": {
+      "express": "*",
+      "morgan": "*",
+      "binaryjs": "*"
+  },
+  "devDependencies": {
+
+  }
+}

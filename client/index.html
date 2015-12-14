@@ -1,0 +1,35 @@
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/binaryjs/0.2.1/binary.min.js"></script>
+
+</head>
+<body>
+
+<audio id="audio" controls>
+    <source id="mp3-source" src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+    // Connect to Binary.js server
+    var client = new BinaryClient('ws://localhost:9000');
+    // Received new stream from server!
+    client.on('stream', function(stream, meta){
+        // Buffer for parts
+        var parts = [];
+        // Got new data
+        stream.on('data', function(data){
+            parts.push(data);
+        });
+        stream.on('end', function(){
+            var audio = document.getElementById('audio');
+
+            var source = document.getElementById('mp3-source');
+            source.src=(window.URL || window.webkitURL).createObjectURL(new Blob(parts));
+            audio.load(); //call this to just preload the audio without playing
+
+        });
+    });
+</script>
+</body>
+</html>
